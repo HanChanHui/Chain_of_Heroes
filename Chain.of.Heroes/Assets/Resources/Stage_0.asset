@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed57257f8886884badeb59fb3560b1b, type: 3}
+  m_Name: Stage_0
+  m_EditorClassIdentifier: 
+  Map_Name: Stage_0
+  player_actionpoint: 8
+  enemy_actionpoint: 8
+  clear_exp: 0
+  stage_monsterLV: 5
+  enemy_pf:
+  - {fileID: 3695012023952319668, guid: abc431fcc8766e2498f65e517b3d33c1, type: 3}
+  enemyXY:
+  - {x: 6, y: 0, z: 14}
