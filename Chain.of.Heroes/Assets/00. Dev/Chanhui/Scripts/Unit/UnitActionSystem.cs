@@ -103,20 +103,29 @@ public class UnitActionSystem : MonoBehaviour
 
             SetBusy();
             selectedAction.TakeAction(mouseGridPosition, ClearBusy);
+            
             OnActionStarted?.Invoke(this, EventArgs.Empty);
         }
     }
 
-    private void SetBusy()
+    public void SetBusy()
     {
         isBusy = true;
-
+        Debug.Log(isBusy);
     }
 
-    private void ClearBusy()
+    public void ClearBusy()
     {
-        isBusy = false;
-
+        if (AttackActionSystem.Instance.GetIsChainAtk_1() || AttackActionSystem.Instance.GetIsChainAtk_2())
+        {
+            isBusy = true;
+            Debug.Log(isBusy);
+        }
+        else
+        {
+            isBusy = false;
+            Debug.Log(isBusy);
+        }
     }
 
     private bool TryHandleUnitSelection()
@@ -259,10 +268,5 @@ public class UnitActionSystem : MonoBehaviour
     public void SetCharacterHill(bool characterHill)
     {
         this.characterHill = characterHill;
-    }
-
-    private void OnDisable()
-    {
-
     }
 }

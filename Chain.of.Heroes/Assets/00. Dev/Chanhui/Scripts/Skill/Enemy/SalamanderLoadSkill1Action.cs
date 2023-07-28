@@ -234,7 +234,7 @@ public class SalamanderLoadSkill1Action : BaseAction
     void Effect()
     {
         BaseAction StartAction = targetUnit.GetAction<StunAction>();
-        StartAction.TakeAction(targetUnit.GetGridPosition(), onActionComplete);
+        StartAction.TakeAction(targetUnit.GetGridPosition(), UnitActionSystem.Instance.ClearBusy);
 
         Transform skill1EffectTransform = Instantiate(skill1_effect, skill1_effect_transform.position, Quaternion.identity);
         Destroy(skill1EffectTransform.gameObject, 0.4f);

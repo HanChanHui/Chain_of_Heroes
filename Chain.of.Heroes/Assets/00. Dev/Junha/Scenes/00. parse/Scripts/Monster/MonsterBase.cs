@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class MonsterBase : MonoBehaviour
@@ -33,8 +34,7 @@ public class MonsterBase : MonoBehaviour
         // 데미지 넣기
         MDM.m_hp -= (int)finalDamage;
 
-        Vector3 pos = new Vector3(this.transform.position.x + 1f, this.transform.position.y + 1f, this.transform.position.z);
-        DamagePopup.Create(pos, (int)finalDamage, isCritical);
+        damagePopup();
     }
 
     private float characterCR;
@@ -63,8 +63,7 @@ public class MonsterBase : MonoBehaviour
         // 데미지 넣기
         MDM.m_hp -= (int)finalDamage;
 
-        Vector3 pos = new Vector3(this.transform.position.x + 1f, this.transform.position.y + 1f, this.transform.position.z);
-        DamagePopup.Create(pos, (int)finalDamage, isCritical);
+        damagePopup();
     }
 
     private float characterSKD; // 크리티컬인가?
@@ -78,7 +77,13 @@ public class MonsterBase : MonoBehaviour
 
         MDM.m_hp -= (int)finalDamage;
 
-        Vector3 pos = new Vector3(this.transform.position.x + 1f, this.transform.position.y + 1f, this.transform.position.z);
-        DamagePopup.Create(pos, (int)finalDamage, isCritical);
+        damagePopup();
     } 
+
+
+    void damagePopup()
+    {
+        Vector3 pos = new Vector3(this.transform.position.x + 1.5f, this.transform.position.y + 1.5f, this.transform.position.z - 0.8f);
+        DamagePopup.Create(pos, (int)finalDamage, isCritical);
+    }
 }

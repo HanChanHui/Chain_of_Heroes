@@ -57,8 +57,8 @@ public class ChainAction : BaseAction
             AttackActionSystem.Instance.SetChainStart(true);
             AttackActionSystem.Instance.SetTripleChain(true);
 
-            bestBaseAction.TakeAction(unit.GetGridPosition(), onActionComplete);
-            bestBaseAction2.TakeAction(unit.GetGridPosition(), onActionComplete);
+            bestBaseAction.TakeAction(unit.GetGridPosition(), UnitActionSystem.Instance.ClearBusy);
+            bestBaseAction2.TakeAction(unit.GetGridPosition(), UnitActionSystem.Instance.ClearBusy);
         }
         else
         {
@@ -79,7 +79,7 @@ public class ChainAction : BaseAction
 
             AttackActionSystem.Instance.SetChainStart(true);
 
-            bestBaseAction.TakeAction(unit.GetGridPosition(), onActionComplete);
+            bestBaseAction.TakeAction(unit.GetGridPosition(), UnitActionSystem.Instance.ClearBusy);
         }
         
     }

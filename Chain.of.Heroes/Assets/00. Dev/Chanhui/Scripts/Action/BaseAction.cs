@@ -70,7 +70,7 @@ public abstract class BaseAction : MonoBehaviour
         onActionComplete();
         OnAnyChainCompleted?.Invoke(this, EventArgs.Empty);
         UnitActionSystem.Instance.SetCameraPointchange(false);
-        if (!TurnSystem.Property.IsTurnEnd && (TurnSystem.Property.IsPlayerTurn && (TurnSystem.Property.ActionPoints < 1)))
+        if (!TurnSystem.Property.IsTurnEnd && (TurnSystem.Property.IsPlayerTurn && (TurnSystem.Property.ActionPoints <= 0)))
         {
             if (!AttackActionSystem.Instance.GetIsChainAtk_1() && !AttackActionSystem.Instance.GetIsChainAtk_2())
             {

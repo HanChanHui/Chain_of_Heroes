@@ -117,6 +117,7 @@ public class ChainLongAttackAction : BaseAction
             case State.SwingingChainLongAttackWait:
                 if (unit.GetChainfirst())
                 {
+
                     if (AttackActionSystem.Instance.GetIsChainAtk_1())
                     {
                         AttackActionSystem.Instance.SetCharacterDataManager(unit.GetCharacterDataManager());

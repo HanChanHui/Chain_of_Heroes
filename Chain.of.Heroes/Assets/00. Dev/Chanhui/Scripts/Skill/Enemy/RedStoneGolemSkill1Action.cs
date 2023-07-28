@@ -158,7 +158,7 @@ public class RedStoneGolemSkill1Action : BaseAction
                     {
                         Debug.Log(targetPlayer);
                         BaseAction StartAction = targetPlayer.GetAction<StunAction>();
-                        StartAction.TakeAction(targetPlayer.GetGridPosition(), onActionComplete);
+                        StartAction.TakeAction(targetPlayer.GetGridPosition(), UnitActionSystem.Instance.ClearBusy);
                         StartAction.SetIsSkillCount(3);
                         targetPlayer.SetIsStun(true);
                         targetPlayer.GetCharacterDataManager().SkillDamage();
