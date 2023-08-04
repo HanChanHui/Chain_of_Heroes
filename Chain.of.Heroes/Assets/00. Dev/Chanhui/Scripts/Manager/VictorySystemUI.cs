@@ -96,6 +96,7 @@ public class VictorySystemUI : MonoBehaviour
         }
     }
 
+    // 방식 변경 = 처음에 캐릭터를 참여시킬때 기준으로 캐릭터에게 경험치 제공
     private List<Unit> playerUnit;
     private List<Unit> deadplayerUnit;
     private void MVPSelectPlayer()
@@ -113,13 +114,6 @@ public class VictorySystemUI : MonoBehaviour
 
             if (playerUnit.Contains(unit))
             {
-                if (_gameClear)
-                {
-                    unit.GetCharacterDataManager().m_currentExp = MapManager.Instance.mapData[MapManager.Instance.stageNum].Clear_Exp;
-                    DataUpdate(unit.GetCharacterDataManager());
-                    Set_LevelUPImage(unit);
-
-                }
 
                 if (_mvpPlayer == null)
                 {
@@ -137,6 +131,15 @@ public class VictorySystemUI : MonoBehaviour
             }
         }
 
+        if (_gameClear)
+        {
+            //unit.GetCharacterDataManager().m_currentExp = MapManager.Instance.mapData[MapManager.Instance.stageNum].Clear_Exp;
+            DataUpdate();
+            Set_LevelUPImage();
+
+        }
+
+        /*
         for (int i = deadplayerUnit.Count; i > 0; i--)
         {
             Unit unit = deadplayerUnit[i - 1];
@@ -145,7 +148,7 @@ public class VictorySystemUI : MonoBehaviour
             {
                 if (_gameClear)
                 {
-                    unit.GetCharacterDataManager().m_currentExp = MapManager.Instance.mapData[MapManager.Instance.stageNum].Clear_Exp;
+                    //unit.GetCharacterDataManager().m_currentExp = MapManager.Instance.mapData[MapManager.Instance.stageNum].Clear_Exp;
                     DataUpdate(unit.GetCharacterDataManager());
                     Set_LevelUPImage(unit);
 
@@ -165,7 +168,7 @@ public class VictorySystemUI : MonoBehaviour
                     _mvpPlayer = unit;
                 }
             }
-        }
+        }*/
     }
 
     private void Set_NameAndImage()
@@ -209,64 +212,77 @@ public class VictorySystemUI : MonoBehaviour
         }
     }
 
-    private void Set_LevelUPImage(Unit unit)
+    private void Set_LevelUPImage()
     {
-        CharacterDataManager data = unit.GetCharacterDataManager();
+        //CharacterDataManager data = unit.GetCharacterDataManager();
+        CharacterDataManager[] data = DataManager.Instance.GetInitCDM();
 
-        if (data.m_currentExp > data.m_maxExp)
+        for (int i = 0; i < 8; i++)
         {
-            Transform actionButtonTransform = Instantiate(LevelupPlayerPrefab, LevelupPlayersTransform);
-            Image CharacterUI = actionButtonTransform.GetComponent<Image>();
-            
-            switch (data.m_name)
+            if (CharacterTypeManager.Instance.GetIsCharacter()[i] == true)
             {
-                case "아카메": // _1
-                    CharacterUI.sprite = Resources.Load<Sprite>("SD_SwordWoman");
-                    break;
+                if (data[i].m_currentExp > data[i].m_maxExp)
+                {
+                    Transform actionButtonTransform = Instantiate(LevelupPlayerPrefab, LevelupPlayersTransform);
+                    Image CharacterUI = actionButtonTransform.GetComponent<Image>();
 
-                case "크리스": // _2
-                    CharacterUI.sprite = Resources.Load<Sprite>("SD_Night");
-                    break;
+                    switch (data[i].m_name)
+                    {
+                        case "아카메": // _1
+                            CharacterUI.sprite = Resources.Load<Sprite>("SD_SwordWoman");
+                            break;
 
-                case "카미나": // _3
-                    CharacterUI.sprite = Resources.Load<Sprite>("SD_Samurai");
-                    break;
+                        case "크리스": // _2
+                            CharacterUI.sprite = Resources.Load<Sprite>("SD_Night");
+                            break;
 
-                case "멜리사": // _4
-                    CharacterUI.sprite = Resources.Load<Sprite>("SD_Archer");
-                    break;
+                        case "카미나": // _3
+                            CharacterUI.sprite = Resources.Load<Sprite>("SD_Samurai");
+                            break;
 
-                case "플라틴": // _5
-                    CharacterUI.sprite = Resources.Load<Sprite>("SD_Guardian");
-                    break;
+                        case "멜리사": // _4
+                            CharacterUI.sprite = Resources.Load<Sprite>("SD_Archer");
+                            break;
 
-                case "아이네": // _6
-                    CharacterUI.sprite = Resources.Load<Sprite>("SD_Priest");
-                    break;
+                        case "플라틴": // _5
+                            CharacterUI.sprite = Resources.Load<Sprite>("SD_Guardian");
+                            break;
 
-                case "제이브": // _7
-                    CharacterUI.sprite = Resources.Load<Sprite>("SD_Wizard");
-                    break;
+                        case "아이네": // _6
+                            CharacterUI.sprite = Resources.Load<Sprite>("SD_Priest");
+                            break;
 
-                case "바네사": // _8
-                    CharacterUI.sprite = Resources.Load<Sprite>("SD_Valkyrie");
-                    break;
+                        case "제이브": // _7
+                            CharacterUI.sprite = Resources.Load<Sprite>("SD_Wizard");
+                            break;
+
+                        case "바네사": // _8
+                            CharacterUI.sprite = Resources.Load<Sprite>("SD_Valkyrie");
+                            break;
+                    }
+
+                    CharacterUI.SetNativeSize();
+                }
             }
-
-            CharacterUI.SetNativeSize();
         }
     }
 
-    private void DataUpdate(CharacterDataManager cdm)
+    private void DataUpdate()
     {
         CharacterDataManager[] _initCDM = DataManager.Instance.GetInitCDM();
         for (int i = 0; i < 8; i++)
         {
+            if (CharacterTypeManager.Instance.GetIsCharacter()[i] == true)
+            {
+                _initCDM[i].m_currentExp = MapManager.Instance.mapData[MapManager.Instance.stageNum].Clear_Exp;
+            }
+            /*
             if (_initCDM[i].CharacterName == cdm.CharacterName)
             {
-                _initCDM[i].NumForLvUp = cdm.NumForLvUp;
-                _initCDM[i].m_currentExp = cdm.m_currentExp;
-            }
+                _initCDM[i].m_currentExp = MapManager.Instance.mapData[MapManager.Instance.stageNum].Clear_Exp;
+                //_initCDM[i].NumForLvUp = cdm.NumForLvUp;
+                //_initCDM[i].m_currentExp = cdm.m_currentExp;
+            }*/
         }
     }
 

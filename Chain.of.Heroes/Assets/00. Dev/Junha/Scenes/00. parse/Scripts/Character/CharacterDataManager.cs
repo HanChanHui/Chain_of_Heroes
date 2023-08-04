@@ -194,8 +194,8 @@ public class CharacterDataManager : MonoBehaviour
             LevelGrid.Instance.RemoveUnitAtGridPosition(player.GetGridPosition(), player);
             player.SetIsGrid(true);
 
-            //Destroy(gameObject, 4.0f);
-            Invoke("DeadSpon", 3f);
+            Destroy(gameObject, 4.0f);
+            //Invoke("DeadSpon", 3f);
 
             
         }
@@ -233,8 +233,8 @@ public class CharacterDataManager : MonoBehaviour
             player.GetAnyUnitDead();
             LevelGrid.Instance.RemoveUnitAtGridPosition(player.GetGridPosition(), player);
             player.SetIsGrid(true);
-            //Destroy(gameObject, 4.0f);
-            Invoke("DeadSpon", 3f);
+            Destroy(gameObject, 4.0f);
+            //Invoke("DeadSpon", 3f);
 
             
         }
