@@ -24,7 +24,7 @@ public class UnitManager : MonoBehaviour
     private List<Unit> unitList;
     private List<Unit> friendlyUnitList;
     private List<Unit> enemyUnitList;
-    private List<Unit> playerDeadList;
+    //private List<Unit> playerDeadList;
     private List<CharacterUI> characterUiList;
 
     public MapData mapData;
@@ -44,7 +44,7 @@ public class UnitManager : MonoBehaviour
         unitList = new List<Unit>();
         friendlyUnitList = new List<Unit>();
         enemyUnitList = new List<Unit>();
-        playerDeadList = new List<Unit>();
+        //playerDeadList = new List<Unit>();
         characterUiList = new List<CharacterUI>();
         OnChangeFormation = false;
         Character = new List<GameObject>();
@@ -140,7 +140,7 @@ public class UnitManager : MonoBehaviour
         else
         {
             friendlyUnitList.Remove(unit);
-            playerDeadList.Add(unit);
+            //playerDeadList.Add(unit);
         }
     }
 
@@ -212,6 +212,7 @@ public class UnitManager : MonoBehaviour
         friendlyUnitList.Clear();
         enemyUnitList.Clear();
     }
+    /*
     private void PlayerDeadUnitInit()
     {
         Debug.Log("Dead Player Init Entered");
@@ -231,7 +232,7 @@ public class UnitManager : MonoBehaviour
         }
 
         playerDeadList.Clear();
-    }
+    }*/
 
     public void GetPlayerUI()
     {
@@ -251,10 +252,11 @@ public class UnitManager : MonoBehaviour
     {
         return enemyUnitList;
     }
+    /*
     public List<Unit> GetPlayerDeadList()
     {
         return playerDeadList;
-    }
+    }*/
 
     public Unit GetFriendlyfristUnit()
     {

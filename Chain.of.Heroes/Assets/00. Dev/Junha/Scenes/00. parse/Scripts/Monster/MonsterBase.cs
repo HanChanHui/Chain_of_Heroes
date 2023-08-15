@@ -29,6 +29,7 @@ public class MonsterBase : MonoBehaviour
 
             // 크리티컬 최종 데미지 결정
             finalDamage = (characterAP * (100 / (100 + (monsterDP / 10))) * (1 - MDM.m_damagereductionRate)) * (1.3f + characterCD) * propertyDamage;
+            isCritical = false;
         }
 
         // 데미지 넣기

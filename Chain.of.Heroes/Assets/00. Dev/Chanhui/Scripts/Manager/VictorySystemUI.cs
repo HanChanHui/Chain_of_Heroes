@@ -102,10 +102,11 @@ public class VictorySystemUI : MonoBehaviour
     private void MVPSelectPlayer()
     {
         playerUnit = UnitManager.Instance.GetFriendlyUnitList();
+        /*
         if (UnitManager.Instance.GetPlayerDeadList() != null)
         {
             deadplayerUnit = UnitManager.Instance.GetPlayerDeadList();
-        }
+        }*/
 
         Debug.Log(playerUnit.Count);
         for (int i = playerUnit.Count; i > 0; i--)
